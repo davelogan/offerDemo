@@ -1,0 +1,51 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="offer_items_list" parent="AppTheme">
+        <item name="android:paddingStart">@dimen/offer_items_list_padding_left</item>
+        <item name="android:paddingEnd">@dimen/offer_items_list_padding_right</item>
+    </style>
+
+    <style name="offer_item_card_view" parent="AppTheme">
+        <item name="android:layout_marginStart">@dimen/offer_item_margin_left</item>
+        <item name="android:layout_marginEnd">@dimen/offer_item_margin_right</item>
+        <item name="android:layout_marginBottom">@dimen/offer_item_card_view_margin_bottom</item>
+    </style>
+
+    <style name="offer_item_card_view_image_view" parent="AppTheme">
+        <item name="android:padding">@dimen/offer_item_image_view_padding</item>
+    </style>
+
+    <style name="offer_item_card_view_text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_offer_card_text</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+    </style>
+
+    <style name="offer_item_card_view_name" parent="offer_item_card_view_text">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">@dimen/offer_item_name_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/offer_item_name_margin_bottom</item>
+    </style>
+
+    <style name="offer_item_card_view_current_amount" parent="offer_item_card_view_text">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/offer_item_current_value_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/offer_item_current_value_margin_bottom</item>
+    </style>
+
+
+</resources>

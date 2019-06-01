@@ -17,6 +17,9 @@
 
 <resources>
 
+    <!-- ======================================================================== -->
+    <!-- Offer Items List -->
+    <!-- ======================================================================== -->
     <dimen name="offer_items_list_padding_left">8dp</dimen>
     <dimen name="offer_items_list_padding_right">8dp</dimen>
 
@@ -29,11 +32,20 @@
 
     <dimen name="offer_item_image_view_padding">6dp</dimen>
 
+    <dimen name="offer_item_current_value_text_size">12sp</dimen>
     <dimen name="offer_item_current_value_margin_top">8dp</dimen>
     <dimen name="offer_item_current_value_margin_bottom">0dp</dimen>
 
+    <dimen name="offer_item_name_text_size">11sp</dimen>
     <dimen name="offer_item_name_margin_top">3dp</dimen>
     <dimen name="offer_item_name_margin_bottom">0dp</dimen>
+
+    <dimen name="offer_card_image_bg_radius">5pt</dimen>
+
+
+    <!-- ======================================================================== -->
+    <!-- Offer Details -->
+    <!-- ======================================================================== -->
 
 
 </resources>

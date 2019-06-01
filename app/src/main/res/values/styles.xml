@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- ======================================================================== -->
+    <!-- Offer Items List -->
+    <!-- ======================================================================== -->
+
     <style name="offer_items_list" parent="AppTheme">
         <item name="android:paddingStart">@dimen/offer_items_list_padding_left</item>
         <item name="android:paddingEnd">@dimen/offer_items_list_padding_right</item>
@@ -19,12 +23,13 @@
         <item name="android:layout_marginBottom">@dimen/offer_item_card_view_margin_bottom</item>
     </style>
 
-    <style name="offer_item_card_view_image_view" parent="AppTheme">
+    <style name="offer_item_image_view" parent="AppTheme">
         <item name="android:padding">@dimen/offer_item_image_view_padding</item>
+        <item name="android:background">@drawable/offer_item_image_rounded_bg</item>
     </style>
 
-    <style name="offer_item_card_view_text" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/color_offer_card_text</item>
+    <style name="offer_item_text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_offer_item_text</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
         <item name="android:ellipsize">end</item>
@@ -34,18 +39,23 @@
         <item name="android:lineSpacingExtra">0dp</item>
     </style>
 
-    <style name="offer_item_card_view_name" parent="offer_item_card_view_text">
-        <item name="android:textSize">12sp</item>
+    <style name="offer_item_text_name" parent="offer_item_text">
+        <item name="android:textSize">@dimen/offer_item_name_text_size</item>
         <item name="android:layout_marginTop">@dimen/offer_item_name_margin_top</item>
         <item name="android:layout_marginBottom">@dimen/offer_item_name_margin_bottom</item>
     </style>
 
-    <style name="offer_item_card_view_current_amount" parent="offer_item_card_view_text">
-        <item name="android:textSize">11sp</item>
+    <style name="offer_item_text_current_amount" parent="offer_item_text">
+        <item name="android:textSize">@dimen/offer_item_current_value_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginTop">@dimen/offer_item_current_value_margin_top</item>
         <item name="android:layout_marginBottom">@dimen/offer_item_current_value_margin_bottom</item>
     </style>
+
+
+    <!-- ======================================================================== -->
+    <!-- Offer Details -->
+    <!-- ======================================================================== -->
 
 
 </resources>

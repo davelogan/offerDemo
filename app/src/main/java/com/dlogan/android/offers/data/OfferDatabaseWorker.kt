@@ -1,10 +1,8 @@
-package com.dlogan.android.offers.workers
+package com.dlogan.android.offers.data
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.dlogan.android.offers.data.AppDatabase
-import com.dlogan.android.offers.data.Offer
 import com.dlogan.android.offers.utilities.LogUtil
 import com.dlogan.android.offers.utilities.OFFERS_DATA_FILENAME
 import com.google.gson.Gson
@@ -18,7 +16,10 @@ class OfferDatabaseWorker(
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
 
-    private val TAG by lazy { OfferDatabaseWorker::class.java.simpleName }
+    companion object {
+        private val TAG by lazy { OfferDatabaseWorker::class.java.simpleName }
+    }
+
     override val coroutineContext = Dispatchers.IO
 
     override suspend fun doWork(): Result = coroutineScope {

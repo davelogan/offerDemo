@@ -8,7 +8,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.dlogan.android.offers.utilities.DATABASE_NAME
-import com.dlogan.android.offers.workers.OfferDatabaseWorker
 
 /**
  * The Room database for this app

@@ -15,4 +15,8 @@ object LogUtil {
     fun e(tag: String, message: String, exception: Throwable) {
         Log.e(tag, message, exception)
     }
+
+    fun e(tag: String, message: String) {
+        Log.e(tag, message)
+    }
 }

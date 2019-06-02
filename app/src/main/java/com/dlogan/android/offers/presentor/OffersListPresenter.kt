@@ -3,22 +3,19 @@ package com.dlogan.android.offers.presentor
 import com.dlogan.android.offers.OffersListContract
 import com.dlogan.android.offers.entity.Offer
 import com.dlogan.android.offers.interactor.OfferListInteractor
-import com.dlogan.android.offers.view.activities.OfferDetailActivity
+import com.dlogan.android.offers.view.screens.OffersDetailScreen
+import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 
-class OffersListPresenter(private var view: OffersListContract.View?) : OffersListContract.Presenter,
+class OffersListPresenter(private var view: OffersListContract.View?, var cicerone: Cicerone<Router>) : OffersListContract.Presenter,
     OffersListContract.InteractorOutput {
 
     private var interactor: OffersListContract.Interactor? = OfferListInteractor(this)
 
-    @Inject
-    lateinit var router: Router
-
-
     override fun offerItemItemClicked(offer: Offer?) {
-        router.navigateTo(OfferDetailActivity.TAG, offer)
+        cicerone.router.navigateTo(OffersDetailScreen(offer))
     }
 
     override fun onViewCreated() {

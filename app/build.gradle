@@ -65,7 +65,7 @@ dependencies {
 
     //Cicerone - https://github.com/terrakok/Cicerone
     //For Router and Navigation
-    implementation 'ru.terrakok.cicerone:cicerone:2.1.0'
+    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
 
     //test

@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
@@ -25,26 +27,8 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
         val TAG by lazy { OffersListActivity::class.java.simpleName }
     }
 
-    private val navigator: Navigator? by lazy {
-        object : Navigator {
-            override fun applyCommand(command: Command) {
-                if (command is Forward) {
-                    forward(command)
-                }
-            }
-
-            private fun forward(command: Forward) {
-                val data = (command.transitionData as Offer)
-
-                when (command.screenKey) {
-                    OfferDetailActivity.TAG -> startActivity(
-                        Intent(this@OffersListActivity, OfferDetailActivity::class.java)
-                            .putExtra("data", data as Parcelable)
-                    )   // 4
-                    else -> LogUtil.e("Cicerone", "Unknown screen: " + command.screenKey)
-                }
-            }
-        }
+    val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
+        SupportAppNavigator(this, -1)
     }
 
     @Inject
@@ -57,8 +41,7 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
         setContentView(R.layout.activity_main)
 
         appComponent.inject(this)
-        presenter = OffersListPresenter(this)
-        rv_offers_list_activity.adapter = OffersListAdapter({ offer -> presenter?.offerItemItemClicked(offer) }, null)
+        presenter = OffersListPresenter(this, cicerone)
         rv_offers_list_activity.adapter = OffersListAdapter({ offer -> presenter?.offerItemItemClicked(offer) }, null)
     }
 

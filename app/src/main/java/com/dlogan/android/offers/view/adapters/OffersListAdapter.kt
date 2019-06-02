@@ -13,6 +13,7 @@ class OffersListAdapter(private var listener: (Offer?) -> Unit, private var data
 
     override fun onBindViewHolder(holderListItem: OfferListItemViewHolder, position: Int) {
         holderListItem.bindTo(getItem(position))
+        holderListItem.itemView.setOnClickListener { listener(dataList?.get(position)) }
     }
 
     private fun getItem(position: Int): Offer? {

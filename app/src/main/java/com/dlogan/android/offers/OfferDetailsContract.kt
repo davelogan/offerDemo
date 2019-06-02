@@ -5,7 +5,6 @@ import com.dlogan.android.offers.entity.Offer
 interface OfferDetailsContract {
 
     interface View {
-        fun showOfferData(offer: Offer)
         fun showInfoMessage(msg: String)
     }
 
@@ -14,8 +13,12 @@ interface OfferDetailsContract {
         fun backButtonClicked()
 
         // Model updates
-        fun onViewCreated(offer: Offer)
+        fun onViewCreated(offer: Offer?)
 
         fun onDestroy()
+    }
+
+    interface Interactor {
+        fun favoriteOffer(offer: Offer, isFavorite: Boolean)
     }
 }

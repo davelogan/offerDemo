@@ -2,6 +2,7 @@ package com.dlogan.android.offers.di
 
 import com.dlogan.android.offers.OffersDemoApplication
 import com.dlogan.android.offers.interactor.OfferListInteractor
+import com.dlogan.android.offers.view.activities.OfferDetailActivity
 import com.dlogan.android.offers.view.activities.OffersListActivity
 import com.dlogan.android.offers.view.activities.SplashActivity
 import dagger.Component
@@ -19,5 +20,6 @@ interface ApplicationComponent {
 
     fun inject(splashActivity: SplashActivity)
     fun inject(offersListActivity: OffersListActivity)
+    fun inject(offerDetailActivity: OfferDetailActivity)
 
 }

@@ -5,3 +5,5 @@ package com.dlogan.android.offers.utilities
  */
 const val DATABASE_NAME = "offers-db"
 const val OFFERS_DATA_FILENAME = "Offers.json"
+
+const val OFFER_KEY = "OFFER_KEY"

@@ -1,6 +1,6 @@
 package com.dlogan.android.offers
 
-import com.dlogan.android.offers.data.Offer
+import com.dlogan.android.offers.entity.Offer
 
 interface OffersListContract {
     interface View {

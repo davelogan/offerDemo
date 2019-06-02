@@ -1,4 +1,4 @@
-package com.dlogan.android.offers.data
+package com.dlogan.android.offers.entity
 
 import androidx.room.Dao
 import androidx.room.Insert

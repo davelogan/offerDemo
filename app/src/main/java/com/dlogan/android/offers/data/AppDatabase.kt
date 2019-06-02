@@ -7,6 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import com.dlogan.android.offers.data.loader.OfferDatabaseWorker
+import com.dlogan.android.offers.entity.Offer
+import com.dlogan.android.offers.entity.OfferDao
 import com.dlogan.android.offers.utilities.DATABASE_NAME
 
 /**

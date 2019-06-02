@@ -77,3 +77,8 @@ dependencies {
 kapt {
     generateStubs = true
 }
+
+androidExtensions {
+    //In order to use @Parcelize
+    experimental = true
+}

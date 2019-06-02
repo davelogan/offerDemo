@@ -6,10 +6,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dlogan.android.offers.OffersDemoApplication
 import com.dlogan.android.offers.SplashContract
+import com.dlogan.android.offers.di.ApplicationComponent
 import com.dlogan.android.offers.presentor.SplashPresenter
+import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
+import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
 
@@ -29,22 +33,32 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
             }
         }
     }
+
+    val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
+        (this.application as OffersDemoApplication).appComponent
+    }
+
     private var presenter: SplashContract.Presenter? = null
+
+    @Inject
+    lateinit var cicerone: Cicerone<Router>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = SplashPresenter(this)
+        appComponent.inject(this)
+
+        presenter = SplashPresenter(this, cicerone)
     }
 
     override fun onResume() {
         super.onResume()
-        OffersDemoApplication.INSTANCE.cicerone.navigatorHolder.setNavigator(navigator)
+        cicerone.navigatorHolder.setNavigator(navigator)
         presenter?.onViewCreated()
     }
 
     override fun onPause() {
         super.onPause()
-        OffersDemoApplication.INSTANCE.cicerone.navigatorHolder.removeNavigator()
+        cicerone.navigatorHolder.removeNavigator()
     }
 
     override fun finishView() {

@@ -5,12 +5,13 @@ import com.dlogan.android.offers.di.ApplicationComponent
 import com.dlogan.android.offers.di.ApplicationModule
 import com.dlogan.android.offers.di.DaggerApplicationComponent
 
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Router
 
 class OffersDemoApplication : Application() {
 
     companion object {
+        //TODO this smells! Need to find a good way for the Interactors to
+        // be able to use injection without having the Application Component passed in. Not sure yet the best
+        // way to do this with the VIPER architecture
         lateinit var INSTANCE: OffersDemoApplication
     }
 
@@ -21,24 +22,13 @@ class OffersDemoApplication : Application() {
             .build()
     }
 
-    init {
-        INSTANCE = this
-    }
-
-    // Routing layer (VIPER)
-    lateinit var cicerone: Cicerone<Router>
-
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
         this.injectMembers()
-        this.initCicerone()
     }
 
-    private fun injectMembers() = appComponent.inject(this)
-
-
-    private fun initCicerone() {
-        this.cicerone = Cicerone.create()
+    private fun injectMembers() {
+        appComponent.inject(this)
     }
 }

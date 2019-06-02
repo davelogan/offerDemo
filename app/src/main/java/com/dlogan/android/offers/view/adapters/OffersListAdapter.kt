@@ -2,7 +2,7 @@ package com.dlogan.android.offers.view.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dlogan.android.offers.data.Offer
+import com.dlogan.android.offers.entity.Offer
 
 
 class OffersListAdapter(private var listener: (Offer?) -> Unit, private var dataList: List<Offer>?) :

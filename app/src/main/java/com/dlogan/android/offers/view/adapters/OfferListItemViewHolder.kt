@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dlogan.android.offers.R
-import com.dlogan.android.offers.data.Offer
+import com.dlogan.android.offers.entity.Offer
 import kotlinx.android.synthetic.main.offer_item.view.*
 
 /**

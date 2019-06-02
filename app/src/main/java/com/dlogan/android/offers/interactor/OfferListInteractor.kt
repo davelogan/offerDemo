@@ -1,26 +1,31 @@
 package com.dlogan.android.offers.interactor
 
 import android.annotation.SuppressLint
-import android.content.Context
+import com.dlogan.android.offers.OffersDemoApplication
 import com.dlogan.android.offers.OffersListContract
-import com.dlogan.android.offers.data.AppDatabase
+import com.dlogan.android.offers.entity.OffersRepository
 import com.dlogan.android.offers.utilities.LogUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class OfferListInteractor @Inject constructor(
-    private val context: Context,
-    var outputContract: OffersListContract.InteractorOutput
-) : OffersListContract.Interactor {
+class OfferListInteractor constructor(var outputContract: OffersListContract.InteractorOutput) :
+    OffersListContract.Interactor {
 
     companion object {
         val TAG by lazy { OfferListInteractor::class.java.simpleName }
     }
 
+    init {
+        OffersDemoApplication.INSTANCE.appComponent.inject(this)
+    }
+
+    @Inject
+    lateinit var offersRepository: OffersRepository
+
     @SuppressLint("CheckResult")
     override fun loadOffersList() {
-        AppDatabase.getInstance(context).offerDao().getOffers().subscribeOn(Schedulers.computation())
+        offersRepository.getOffers().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ offers ->
                 LogUtil.d(TAG, String.format("Got %d offers", offers.size))

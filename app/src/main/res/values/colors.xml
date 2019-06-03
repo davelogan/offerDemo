@@ -6,7 +6,7 @@
 
     <color name="color_offer_item_image_bg">#D3D3D3</color>
     <color name="color_offer_item_text">#4A4A4A</color>
-    <color name="color_offer_item_favorite">#FFD700</color>
+    <color name="color_offer_item_favorite">@color/colorPrimaryDark</color>
 
 
 </resources>

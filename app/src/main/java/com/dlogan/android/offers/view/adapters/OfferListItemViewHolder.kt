@@ -1,6 +1,7 @@
 package com.dlogan.android.offers.view.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,23 +17,18 @@ class OfferListItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.offer_item, parent, false)
 ) {
 
-    private val currentValue = itemView.currentValue
-    private val name = itemView.name
-    private val imageView = itemView.imageView
     var offer: Offer? = null
 
-    /**
-     * Items might be null if they are not paged in yet. PagedListAdapter will re-bind the
-     * ViewHolder when Item is loaded.
-     */
     fun bindTo(offer: Offer?) {
         this.offer = offer
-        currentValue.text = offer?.currentValue
-        name.text = offer?.name
+        itemView.currentValue.text = offer?.currentValue
+        itemView.name.text = offer?.name
+        //itemView.favorite.visibility = offer?.isFavorite ?: "gone"
+        itemView.favorite.visibility = if (offer?.isFavorite == true) View.VISIBLE else View.GONE
 
         Glide.with(itemView)
             .load(offer?.url)
-            .into(this.imageView)
+            .into(itemView.imageView)
     }
 
 

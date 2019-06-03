@@ -1,6 +1,7 @@
 package com.dlogan.android.offers.di
 
 import com.dlogan.android.offers.OffersDemoApplication
+import com.dlogan.android.offers.interactor.OfferDetailsInteractor
 import com.dlogan.android.offers.interactor.OfferListInteractor
 import com.dlogan.android.offers.view.activities.OfferDetailActivity
 import com.dlogan.android.offers.view.activities.OffersListActivity
@@ -16,6 +17,8 @@ interface ApplicationComponent {
 
     fun inject(application: OffersDemoApplication)
     fun inject(offerListInteractor: OfferListInteractor)
+    fun inject(offerDetailsInteractor: OfferDetailsInteractor)
+
     fun inject(router: Cicerone<Router>)
 
     fun inject(splashActivity: SplashActivity)

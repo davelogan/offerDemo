@@ -12,6 +12,8 @@ interface OfferDetailsContract {
     interface Presenter {
         // User actions
         fun backButtonClicked()
+        fun favoriteCbClicked(offer: Offer?, favorite: Boolean)
+
 
         // Model updates
         fun onViewCreated(offer: Offer?)
@@ -20,6 +22,11 @@ interface OfferDetailsContract {
     }
 
     interface Interactor {
-        fun favoriteOffer(offer: Offer, isFavorite: Boolean)
+        fun favoriteOffer(offer: Offer?, favorite: Boolean)
+    }
+
+    interface InteractorOutput {
+        fun onSetAtFavoriteSuccess(data: Offer)
+        fun onSetAtFavoriteError()
     }
 }

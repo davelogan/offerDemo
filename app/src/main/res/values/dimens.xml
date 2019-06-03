@@ -42,6 +42,8 @@
 
     <dimen name="offer_card_image_bg_radius">5pt</dimen>
 
+    <dimen name="offer_item_favorite_max_width">10dp</dimen>
+    <dimen name="offer_item_favorite_max_height">10dp</dimen>
 
     <!-- ======================================================================== -->
     <!-- Offer Details -->

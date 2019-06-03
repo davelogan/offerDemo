@@ -11,11 +11,10 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 
-class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var cicerone: Cicerone<Router>) : OfferDetailsContract.Presenter {
+class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var cicerone: Cicerone<Router>) : OfferDetailsContract.Presenter, OfferDetailsContract.InteractorOutput {
 
 
-    private var interactor: OfferDetailsContract.Interactor? = OfferDetailsInteractor()
-
+    private var interactor: OfferDetailsContract.Interactor? = OfferDetailsInteractor(this)
 
     override fun onViewCreated(offer: Offer?) {
         view?.showOfferData(offer)
@@ -25,8 +24,21 @@ class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var ci
         cicerone.router.exit()
     }
 
+    override fun favoriteCbClicked(offer: Offer?, favorite: Boolean) {
+        interactor?.favoriteOffer(offer, favorite)
+    }
+
+
     override fun onDestroy() {
         view = null
         interactor = null
+    }
+
+    override fun onSetAtFavoriteSuccess(data: Offer) {
+        view?.showOfferData(data)
+    }
+
+    override fun onSetAtFavoriteError() {
+        view?.showInfoMessage("Error when updating Offer")
     }
 }

@@ -1,10 +1,9 @@
 package com.dlogan.android.offers.entity
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import io.reactivex.Completable
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 /**
  * The Data Access Object for the Offer.
@@ -20,4 +19,7 @@ interface OfferDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(offers: List<Offer>)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    fun update(offer: Offer): Single<Integer>
 }

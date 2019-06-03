@@ -18,7 +18,7 @@ data class Offer(
     val terms: String?,
     @ColumnInfo(name = "current_value")
     val currentValue: String?,
-    val isFavorite: Boolean = false
+    var isFavorite: Boolean = false
 ): Parcelable
 
 

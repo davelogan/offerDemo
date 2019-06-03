@@ -2,6 +2,7 @@ package com.dlogan.android.offers.view.activities
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
@@ -43,6 +44,10 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
         appComponent.inject(this)
         presenter = OfferDetailsPresenter(this, cicerone)
+
+        favorite.setOnClickListener {
+            presenter?.favoriteCbClicked(offer, favorite.isChecked)
+        }
     }
 
     override fun onResume() {

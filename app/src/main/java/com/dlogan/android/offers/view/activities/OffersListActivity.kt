@@ -1,24 +1,20 @@
 package com.dlogan.android.offers.view.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.dlogan.android.offers.OffersListContract
 import com.dlogan.android.offers.R
 import com.dlogan.android.offers.entity.Offer
 import com.dlogan.android.offers.presentor.OffersListPresenter
-import com.dlogan.android.offers.utilities.LogUtil
 import com.dlogan.android.offers.view.adapters.OffersListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import ru.terrakok.cicerone.android.support.SupportAppScreen
-import ru.terrakok.cicerone.commands.Command
-import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 class OffersListActivity : BaseActivity(), OffersListContract.View {
@@ -35,6 +31,7 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
     lateinit var cicerone: Cicerone<Router>
 
     private var presenter: OffersListContract.Presenter? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,4 +76,7 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
     override fun showInfoMessage(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
+
+    override fun getToolbarInstance(): Toolbar? = toolbar_widget
+
 }

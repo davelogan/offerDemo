@@ -1,7 +1,9 @@
 package com.dlogan.android.offers.view.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.dlogan.android.offers.OfferDetailsContract
 import com.dlogan.android.offers.R
@@ -10,7 +12,7 @@ import com.dlogan.android.offers.presentor.OfferDetailsPresenter
 import com.dlogan.android.offers.utilities.LogUtil
 import com.dlogan.android.offers.utilities.OFFER_KEY
 import kotlinx.android.synthetic.main.activity_offer_detail.*
-import kotlinx.android.synthetic.main.activity_offer_detail.view.*
+import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
@@ -34,12 +36,13 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
     var offer: Offer? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_offer_detail)
 
         appComponent.inject(this)
-        presenter = OfferDetailsPresenter(this)
+        presenter = OfferDetailsPresenter(this, cicerone)
     }
 
     override fun onResume() {
@@ -50,6 +53,10 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
         presenter?.onViewCreated(offer)
         cicerone.navigatorHolder.setNavigator(navigator)
+
+        supportActionBar?.let {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
     }
 
     override fun onPause() {
@@ -76,5 +83,17 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
     override fun showInfoMessage(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun getToolbarInstance(): Toolbar? = toolbar_widget
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                presenter?.backButtonClicked()
+                true
+            }
+            else -> false
+        }
     }
 }

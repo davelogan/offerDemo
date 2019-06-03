@@ -21,8 +21,8 @@ class OfferDetailsPresenter(private var view: OfferDetailsContract.View?) : Offe
     @Inject
     lateinit var router: Router
 
-
     override fun onViewCreated(offer: Offer?) {
+        view?.showOfferData(offer)
     }
 
     override fun onDestroy() {

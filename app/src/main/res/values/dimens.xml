@@ -47,5 +47,13 @@
     <!-- Offer Details -->
     <!-- ======================================================================== -->
 
+    <dimen name="offer_item_detail_padding">12dp</dimen>
+
+    <dimen name="offer_item_detail_current_value_text_size">16sp</dimen>
+    <dimen name="offer_item_detail_text_size">14sp</dimen>
+
+    <dimen name="offer_item_detail_text_margin_top">4dp</dimen>
+    <dimen name="offer_item_detail_text_margin_bottom">8dp</dimen>
+
 
 </resources>

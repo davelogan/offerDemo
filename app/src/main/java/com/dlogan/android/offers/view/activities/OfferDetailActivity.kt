@@ -2,11 +2,15 @@ package com.dlogan.android.offers.view.activities
 
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.dlogan.android.offers.OfferDetailsContract
 import com.dlogan.android.offers.R
 import com.dlogan.android.offers.entity.Offer
 import com.dlogan.android.offers.presentor.OfferDetailsPresenter
+import com.dlogan.android.offers.utilities.LogUtil
 import com.dlogan.android.offers.utilities.OFFER_KEY
+import kotlinx.android.synthetic.main.activity_offer_detail.*
+import kotlinx.android.synthetic.main.activity_offer_detail.view.*
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
@@ -36,13 +40,14 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
         appComponent.inject(this)
         presenter = OfferDetailsPresenter(this)
-
-        offer = savedInstanceState?.getParcelable(OFFER_KEY)
-
     }
 
     override fun onResume() {
         super.onResume()
+
+        offer = intent?.getParcelableExtra(OFFER_KEY)
+        LogUtil.d(TAG, String.format("Got offer: %s", offer?.id))
+
         presenter?.onViewCreated(offer)
         cicerone.navigatorHolder.setNavigator(navigator)
     }
@@ -56,6 +61,17 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
         presenter?.onDestroy()
         presenter = null
         super.onDestroy()
+    }
+
+    override fun showOfferData(offer: Offer?) {
+        name.text = offer?.name
+        currentValue.text = offer?.currentValue
+        description.text = offer?.description
+        terms.text = offer?.terms
+        favorite.isChecked = offer?.isFavorite ?: false
+        Glide.with(this)
+            .load(offer?.url)
+            .into(this.imageView)
     }
 
     override fun showInfoMessage(msg: String) {

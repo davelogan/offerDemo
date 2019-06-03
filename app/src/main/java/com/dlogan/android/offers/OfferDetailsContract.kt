@@ -6,6 +6,7 @@ interface OfferDetailsContract {
 
     interface View {
         fun showInfoMessage(msg: String)
+        fun showOfferData(offer: Offer?)
     }
 
     interface Presenter {

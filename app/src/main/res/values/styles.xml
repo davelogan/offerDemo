@@ -57,5 +57,33 @@
     <!-- Offer Details -->
     <!-- ======================================================================== -->
 
+    <style name="offer_item_detail">
+        <item name="android:paddingLeft">@dimen/offer_item_detail_padding</item>
+        <item name="android:paddingRight">@dimen/offer_item_detail_padding</item>
+    </style>
 
+    <style name="offer_item_detail_image_view" parent="offer_item_image_view">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="offer_item_detail_favorite_cb">
+        <item name="android:button">@drawable/offer_favorite_checkbox_selector</item>
+        <item name="android:buttonTint">@color/color_offer_item_favorite</item>
+    </style>
+
+    <style name="offer_item_detail_text_current_amount" parent="offer_item_text_current_amount">
+        <item name="android:textSize">@dimen/offer_item_detail_current_value_text_size</item>
+    </style>
+
+    <style name="offer_item_detail_text" parent="offer_item_text">
+        <item name="android:textSize">@dimen/offer_item_detail_text_size</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:layout_marginTop">@dimen/offer_item_detail_text_margin_top</item>
+        <item name="android:layout_marginBottom">@dimen/offer_item_detail_text_margin_bottom</item>
+    </style>
+
+    <style name="offer_item_detail_terms_text" parent="offer_item_detail_text">
+        <item name="android:textSize">@dimen/offer_item_detail_text_size</item>
+        <item name="android:textStyle">italic</item>
+    </style>
 </resources>

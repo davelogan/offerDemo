@@ -1,39 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.activities.OfferDetailActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.activities.OfferDetailActivity">
 
-    <ImageView style="@style/offer_item_image_view"
-               android:id="@+id/imageView"
-               android:layout_width="match_parent"
-               android:layout_height="0dp"
-               android:contentDescription="@string/offer_image"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintBottom_toTopOf="@+id/currentValue"
-               app:layout_constraintLeft_toLeftOf="parent"
-               app:layout_constraintRight_toRightOf="parent"
-               app:layout_constraintDimensionRatio="6:4"
-    />
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/offer_item_detail"
+                                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                       android:layout_width="match_parent"
+                                                       android:layout_height="wrap_content"
+                                                       app:layout_constraintBottom_toBottomOf="parent">
 
-    <TextView android:id="@+id/currentValue" style="@style/offer_item_text_current_amount"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              app:layout_constraintBottom_toTopOf="@+id/name"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+        <ImageView style="@style/offer_item_detail_image_view"
+                   android:id="@+id/imageView"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:contentDescription="@string/offer_image"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintBottom_toTopOf="@+id/currentValue"
+                   app:layout_constraintDimensionRatio="6:4"/>
 
-    <TextView android:id="@+id/name" style="@style/offer_item_text_name"
-              android:layout_width="match_parent" android:layout_height="wrap_content"
-              app:layout_constraintBottom_toBottomOf="parent"
-              app:layout_constraintStart_toStartOf="parent"
-              app:layout_constraintEnd_toEndOf="parent"
-              app:layout_constraintTop_toBottomOf="@+id/currentValue"/>
+        <TextView android:id="@+id/currentValue" style="@style/offer_item_detail_text_current_amount"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintEnd_toStartOf="@+id/favorite"
+                  app:layout_constraintTop_toBottomOf="@+id/imageView"
+                  app:layout_constraintBottom_toTopOf="@+id/name"
+                  app:layout_constraintHorizontal_chainStyle="spread"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <CheckBox android:id="@+id/favorite" style="@style/offer_item_detail_favorite_cb"
+                  android:text=""
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:layout_constraintStart_toEndOf="@+id/currentValue"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/imageView"
+                  app:layout_constraintBottom_toTopOf="@+id/name"/>
+
+
+        <TextView android:id="@+id/name" style="@style/offer_item_detail_text"
+                  android:layout_width="match_parent" android:layout_height="wrap_content"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/currentValue"
+                  app:layout_constraintBottom_toTopOf="@+id/description"/>
+
+
+        <TextView android:id="@+id/description" style="@style/offer_item_detail_text"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/name"
+                  app:layout_constraintBottom_toTopOf="@+id/terms"/>
+
+        <TextView android:id="@+id/terms" style="@style/offer_item_detail_terms_text"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/description"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

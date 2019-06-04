@@ -12,6 +12,7 @@ interface OfferDetailsContract {
     interface Presenter {
         // User actions
         fun backButtonClicked()
+
         fun favoriteCbClicked(offer: Offer?, favorite: Boolean)
 
 

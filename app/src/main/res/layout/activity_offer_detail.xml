@@ -3,6 +3,8 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/offer_details_sv"
+
             tools:context=".view.activities.OfferDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout style="@style/offer_item_detail"
@@ -40,14 +42,12 @@
                   app:layout_constraintTop_toBottomOf="@+id/imageView"
                   app:layout_constraintBottom_toTopOf="@+id/name"/>
 
-
         <TextView android:id="@+id/name" style="@style/offer_item_detail_text"
                   android:layout_width="match_parent" android:layout_height="wrap_content"
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
                   app:layout_constraintTop_toBottomOf="@+id/currentValue"
                   app:layout_constraintBottom_toTopOf="@+id/description"/>
-
 
         <TextView android:id="@+id/description" style="@style/offer_item_detail_text"
                   android:layout_width="match_parent"

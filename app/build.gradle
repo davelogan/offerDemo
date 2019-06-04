@@ -9,12 +9,12 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.dlogan.android.ibotta"
+        applicationId "com.dlogan.android.offers"
         minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -69,11 +69,25 @@ dependencies {
     //For Router and Navigation
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 
-
-    //test
+    // testing
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.room:room-testing:2.1.0-rc01'
+    androidTestImplementation 'androidx.arch.core:core-testing:2.0.1'
+
+    // Espresso UI Testing
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    androidTestImplementation 'androidx.annotation:annotation:1.0.2'
+
+    // mockito
+    //androidTestImplementation("org.mockito:mockito-android:2.27.0")
+    //androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito-inline:2.25.0'
+    //androidTestImplementation 'org.mockito:mockito-core:2.27.0' // For instrumentation tests on Android devices and emulators
+    //androidTestImplementation 'org.mockito:mockito-android:2.27.0'
+
 }
 
 kapt {

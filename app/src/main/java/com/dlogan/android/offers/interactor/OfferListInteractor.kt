@@ -9,11 +9,11 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class OfferListInteractor constructor(var outputContract: OffersListContract.InteractorOutput) :
+class OfferListInteractor constructor(private var outputContract: OffersListContract.InteractorOutput) :
     OffersListContract.Interactor {
 
     companion object {
-        val TAG by lazy { OfferListInteractor::class.java.simpleName }
+        val TAG: String by lazy { OfferListInteractor::class.java.simpleName }
     }
 
     init {

@@ -2,7 +2,6 @@ package com.dlogan.android.offers.view.activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
@@ -23,10 +22,10 @@ import javax.inject.Inject
 class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
     companion object {
-        val TAG by lazy { OfferDetailActivity::class.java.simpleName }
+        val TAG: String by lazy { OfferDetailActivity::class.java.simpleName }
     }
 
-    val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
+    private val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
         SupportAppNavigator(this, -1)
     }
 

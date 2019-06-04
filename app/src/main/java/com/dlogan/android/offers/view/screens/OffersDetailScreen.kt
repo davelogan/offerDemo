@@ -8,7 +8,7 @@ import com.dlogan.android.offers.utilities.OFFER_KEY
 import com.dlogan.android.offers.view.activities.OfferDetailActivity
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
-class OffersDetailScreen constructor(val offer: Offer?): SupportAppScreen() {
+class OffersDetailScreen constructor(val offer: Offer?) : SupportAppScreen() {
 
     override fun getActivityIntent(context: Context?): Intent {
         val intent = Intent(context, OfferDetailActivity::class.java)

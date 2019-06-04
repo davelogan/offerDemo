@@ -1,8 +1,6 @@
 package com.dlogan.android.offers.view.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.dlogan.android.offers.OffersDemoApplication
 import com.dlogan.android.offers.SplashContract
@@ -12,8 +10,6 @@ import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import ru.terrakok.cicerone.commands.Command
-import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity(), SplashContract.View {
@@ -35,11 +31,11 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
 //        }
 //    }
 
-    val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
+    private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         (this.application as OffersDemoApplication).appComponent
     }
 
-    val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
+    private val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
         SupportAppNavigator(this, -1)
     }
 

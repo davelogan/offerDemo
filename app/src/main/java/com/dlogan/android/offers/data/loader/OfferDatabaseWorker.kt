@@ -35,7 +35,17 @@ class OfferDatabaseWorker(
                     val database = AppDatabase.getInstance(applicationContext)
 
                     //convert Dto to Entity
-                    var offers: List<Offer> = offerList.map { Offer(it.id, it.url, it.name, it.description, it.terms, it.currentValue, false) }
+                    val offers: List<Offer> = offerList.map {
+                        Offer(
+                            it.id,
+                            it.url,
+                            it.name,
+                            it.description,
+                            it.terms,
+                            it.currentValue,
+                            false
+                        )
+                    }
 
                     database.offerDao().insertAll(offers)
 

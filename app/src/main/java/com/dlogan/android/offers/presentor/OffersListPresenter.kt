@@ -6,10 +6,10 @@ import com.dlogan.android.offers.interactor.OfferListInteractor
 import com.dlogan.android.offers.view.screens.OffersDetailScreen
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
-import javax.inject.Inject
 
 
-class OffersListPresenter(private var view: OffersListContract.View?, var cicerone: Cicerone<Router>) : OffersListContract.Presenter,
+class OffersListPresenter(private var view: OffersListContract.View?, var cicerone: Cicerone<Router>) :
+    OffersListContract.Presenter,
     OffersListContract.InteractorOutput {
 
     private var interactor: OffersListContract.Interactor? = OfferListInteractor(this)

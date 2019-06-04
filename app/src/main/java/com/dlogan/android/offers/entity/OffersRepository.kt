@@ -1,7 +1,6 @@
 package com.dlogan.android.offers.entity
 
 import com.dlogan.android.offers.data.AppDatabase
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
 

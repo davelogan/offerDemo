@@ -19,11 +19,7 @@ import javax.inject.Inject
 
 class OffersListActivity : BaseActivity(), OffersListContract.View {
 
-    companion object {
-        val TAG by lazy { OffersListActivity::class.java.simpleName }
-    }
-
-    val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
+    private val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
         SupportAppNavigator(this, -1)
     }
 

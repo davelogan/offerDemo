@@ -39,12 +39,13 @@
                   app:layout_constraintHorizontal_chainStyle="spread"/>
 
         <ImageView android:id="@+id/favorite" style="@style/offer_item_favorite"
-                  android:text=""
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  app:layout_constraintStart_toEndOf="@+id/currentValue"
-                  app:layout_constraintEnd_toEndOf="parent"
-                  app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+                   android:text=""
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   app:layout_constraintStart_toEndOf="@+id/currentValue"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/imageView"
+                   android:contentDescription="@string/favorite"/>
 
         <TextView android:id="@+id/name" style="@style/offer_item_text_name"
                   android:layout_width="match_parent" android:layout_height="wrap_content"

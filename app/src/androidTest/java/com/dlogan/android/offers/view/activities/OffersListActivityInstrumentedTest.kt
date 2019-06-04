@@ -12,7 +12,6 @@ import com.dlogan.android.offers.view.adapters.OfferListItemViewHolder
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.MockitoAnnotations
 
 class OffersListActivityInstrumentedTest {
 
@@ -36,7 +35,7 @@ class OffersListActivityInstrumentedTest {
     @Before
     fun setUp() {
 
-        MockitoAnnotations.initMocks(this)
+//        MockitoAnnotations.initMocks(this)
 
         //TODO finish getting mock setup...
         //Getting this error org.mockito.exceptions.base.MockitoException:

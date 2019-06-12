@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dlogan.android.offers.R
-import com.dlogan.android.offers.entity.Offer
+import com.dlogan.android.offers.entity.OfferHeader
 import kotlinx.android.synthetic.main.offer_item.view.*
 
 /**
@@ -17,9 +17,9 @@ class OfferListItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.offer_item, parent, false)
 ) {
 
-    var offer: Offer? = null
+    var offer: OfferHeader? = null
 
-    fun bindTo(offer: Offer?) {
+    fun bindTo(offer: OfferHeader?) {
         this.offer = offer
         itemView.currentValue.text = offer?.currentValue
         itemView.name.text = offer?.name
@@ -28,6 +28,7 @@ class OfferListItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
         Glide.with(itemView)
             .load(offer?.url)
+            .error(R.drawable.baseline_insert_photo_black_36)
             .into(itemView.imageView)
     }
 

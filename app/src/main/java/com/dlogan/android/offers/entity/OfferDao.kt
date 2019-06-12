@@ -14,11 +14,15 @@ interface OfferDao {
     fun getOffers(): Flowable<List<Offer>>
 
     @Query("SELECT * FROM offers WHERE id = :offerId")
-    fun getOffer(offerId: String): List<Offer>
+    fun getOffer(offerId: String): Single<Offer>
+
+    @Query("SELECT * FROM offers")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    fun getOfferHeaders(): Flowable<List<OfferHeader>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(offers: List<Offer>)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(offer: Offer): Single<Integer>
+    fun update(offer: Offer): Single<Int>
 }

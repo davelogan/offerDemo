@@ -10,11 +10,10 @@ import ru.terrakok.cicerone.Router
 class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var cicerone: Cicerone<Router>) :
     OfferDetailsContract.Presenter, OfferDetailsContract.InteractorOutput {
 
-
     private var interactor: OfferDetailsContract.Interactor? = OfferDetailsInteractor(this)
 
-    override fun onViewCreated(offer: Offer?) {
-        view?.showOfferData(offer)
+    override fun onViewCreated(offerId: String?) {
+        interactor?.loadOffer(offerId)
     }
 
     override fun backButtonClicked() {
@@ -31,11 +30,19 @@ class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var ci
         interactor = null
     }
 
-    override fun onSetAtFavoriteSuccess(data: Offer) {
+    override fun onFavoriteOfferSuccess(data: Offer) {
         view?.showOfferData(data)
     }
 
-    override fun onSetAtFavoriteError() {
+    override fun onFavoriteOfferError() {
         view?.showInfoMessage("Error when updating Offer")
+    }
+
+    override fun onLoadOfferSuccess(data: Offer) {
+        view?.showOfferData(data)
+    }
+
+    override fun onLoadOfferError() {
+        view?.showInfoMessage("Error when loading Offer")
     }
 }

@@ -8,10 +8,17 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.dlogan.android.offers.R
+import com.dlogan.android.offers.entity.OfferHeader
+import com.dlogan.android.offers.entity.IOffersRepo
 import com.dlogan.android.offers.view.adapters.OfferListItemViewHolder
+import io.reactivex.Flowable
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnit
 
 class OffersListActivityInstrumentedTest {
 
@@ -19,41 +26,27 @@ class OffersListActivityInstrumentedTest {
     @JvmField
     val activityTestRule = ActivityTestRule<OffersListActivity>(OffersListActivity::class.java)
 
-//    @Rule
-//    @JvmField
-//    var rule = MockitoJUnit.rule()
+    @Rule
+    @JvmField
+    var rule = MockitoJUnit.rule()
 
-//    @Mock
-//    @JvmField
-//    var offersRepo = Mockito.mock(OffersRepository::class.java)
-
-//    @Rule @JvmField val injectMocks = InjectMocksRule.create(this)
-//
-//    @Mock
-//    lateinit var offersRepo: OffersRepository
+    @Mock
+    var offersRepo = Mockito.mock(IOffersRepo::class.java)
 
     @Before
     fun setUp() {
 
-//        MockitoAnnotations.initMocks(this)
+        //TODO this is obviously not the way to do this. The mock is getting ignored
 
-        //TODO finish getting mock setup...
-        //Getting this error org.mockito.exceptions.base.MockitoException:
-        //Cannot mock/spy class com.dlogan.android.offers.entity.OffersRepository
-        //Mockito cannot mock/spy because :
-        //- final class
+        MockitoAnnotations.initMocks(this)
 
+        val data = Flowable.fromArray(listOf(
+            OfferHeader("111", "", "name1111", "descr111",false),
+            OfferHeader("222", "", "name222", "descr222",false),
+            OfferHeader("333", "", "name333", "descr333", true)))
 
-//        var offersRepo = Mockito.mock(OffersRepository::class.java)
-//
-//        val data = Flowable.fromArray(listOf(
-//            Offer("111", "", "name1111", "descr111", "terms111", "cv111", false),
-//            Offer("222", "", "name222", "descr222", "terms222", "cv222", false),
-//            Offer("333", "", "name333", "descr333", "terms333", "cv333", true)))
-//
-//
-//        Mockito.`when`(offersRepo.getOffers()).thenReturn(data)
-
+        Mockito.`when`(offersRepo.getOfferHeaders()).thenReturn(data)
+        //TODO would also need to mock getOffer(id)
     }
 
 

@@ -25,14 +25,14 @@ class OfferListInteractor constructor(private var outputContract: OffersListCont
 
     @SuppressLint("CheckResult")
     override fun loadOffersList() {
-        offersRepository.getOffers().subscribeOn(Schedulers.computation())
+        offersRepository.getOfferHeaders().subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ offers ->
                 LogUtil.d(TAG, String.format("Got %d offers", offers.size))
-                outputContract.onQuerySuccess(offers)
+                outputContract.onLoadOffersListSuccess(offers)
             }, { e ->
                 LogUtil.e(TAG, "Error when getting offers", e)
-                outputContract.onQueryError()
+                outputContract.onLoadOffersListError()
             })
     }
 

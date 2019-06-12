@@ -4,13 +4,18 @@ import com.dlogan.android.offers.data.AppDatabase
 import io.reactivex.Flowable
 import io.reactivex.Single
 
-class OffersRepository constructor(private val appDatabase: AppDatabase) {
+class OffersRepository constructor(private val appDatabase: AppDatabase) : OffersRepo{
 
-    fun getOffers(): Flowable<List<Offer>> {
-        return appDatabase.offerDao().getOffers()
+    override fun getOfferHeaders(): Flowable<List<OfferHeader>> {
+        return appDatabase.offerDao().getOfferHeaders()
     }
 
-    fun update(offer: Offer): Single<Integer> {
+    override fun getOffer(offerId: String): Single<Offer> {
+        return appDatabase.offerDao().getOffer(offerId)
+    }
+
+
+    override fun update(offer: Offer): Single<Int> {
         return appDatabase.offerDao().update(offer)
     }
 }

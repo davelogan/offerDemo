@@ -1,7 +1,7 @@
 package com.dlogan.android.offers.presentor
 
 import com.dlogan.android.offers.OffersListContract
-import com.dlogan.android.offers.entity.Offer
+import com.dlogan.android.offers.entity.OfferHeader
 import com.dlogan.android.offers.interactor.OfferListInteractor
 import com.dlogan.android.offers.view.screens.OffersDetailScreen
 import ru.terrakok.cicerone.Cicerone
@@ -14,8 +14,8 @@ class OffersListPresenter(private var view: OffersListContract.View?, var cicero
 
     private var interactor: OffersListContract.Interactor? = OfferListInteractor(this)
 
-    override fun offerItemItemClicked(offer: Offer?) {
-        cicerone.router.navigateTo(OffersDetailScreen(offer))
+    override fun offerItemItemClicked(offerId: String) {
+        cicerone.router.navigateTo(OffersDetailScreen(offerId))
     }
 
     override fun onViewCreated() {
@@ -23,12 +23,12 @@ class OffersListPresenter(private var view: OffersListContract.View?, var cicero
         interactor?.loadOffersList()
     }
 
-    override fun onQuerySuccess(data: List<Offer>) {
+    override fun onLoadOffersListSuccess(data: List<OfferHeader>) {
         view?.hideLoading()
-        view?.publishDataList(data)
+        view?.showOffers(data)
     }
 
-    override fun onQueryError() {
+    override fun onLoadOffersListError() {
         view?.hideLoading()
         view?.showInfoMessage("Error when loading data")
     }

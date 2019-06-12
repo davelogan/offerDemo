@@ -1,18 +1,18 @@
 package com.dlogan.android.offers
 
-import com.dlogan.android.offers.entity.Offer
+import com.dlogan.android.offers.entity.OfferHeader
 
 interface OffersListContract {
     interface View {
         fun showLoading()
         fun hideLoading()
-        fun publishDataList(data: List<Offer>)
+        fun showOffers(data: List<OfferHeader>)
         fun showInfoMessage(msg: String)
     }
 
     interface Presenter {
         // User actions
-        fun offerItemItemClicked(offer: Offer?)
+        fun offerItemItemClicked(offerId: String)
 
         // Model updates
         fun onViewCreated()
@@ -25,7 +25,7 @@ interface OffersListContract {
     }
 
     interface InteractorOutput {
-        fun onQuerySuccess(data: List<Offer>)
-        fun onQueryError()
+        fun onLoadOffersListSuccess(data: List<OfferHeader>)
+        fun onLoadOffersListError()
     }
 }

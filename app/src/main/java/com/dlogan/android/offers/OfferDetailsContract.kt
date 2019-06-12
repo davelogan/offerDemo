@@ -17,17 +17,20 @@ interface OfferDetailsContract {
 
 
         // Model updates
-        fun onViewCreated(offer: Offer?)
+        fun onViewCreated(offerId: String?)
 
         fun onDestroy()
     }
 
     interface Interactor {
+        fun loadOffer(offerId: String?)
         fun favoriteOffer(offer: Offer?, favorite: Boolean)
     }
 
     interface InteractorOutput {
-        fun onSetAtFavoriteSuccess(data: Offer)
-        fun onSetAtFavoriteError()
+        fun onFavoriteOfferSuccess(data: Offer)
+        fun onFavoriteOfferError()
+        fun onLoadOfferSuccess(data: Offer)
+        fun onLoadOfferError()
     }
 }

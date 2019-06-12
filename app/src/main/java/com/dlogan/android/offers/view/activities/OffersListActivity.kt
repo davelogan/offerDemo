@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.dlogan.android.offers.OffersListContract
 import com.dlogan.android.offers.R
-import com.dlogan.android.offers.entity.Offer
+import com.dlogan.android.offers.entity.OfferHeader
 import com.dlogan.android.offers.presentor.OffersListPresenter
 import com.dlogan.android.offers.view.adapters.OffersListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,7 +35,11 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
 
         appComponent.inject(this)
         presenter = OffersListPresenter(this, cicerone)
-        rv_offers_list_activity.adapter = OffersListAdapter({ offer -> presenter?.offerItemItemClicked(offer) }, null)
+        rv_offers_list_activity.adapter = OffersListAdapter({ offerHeader -> offerHeader?.let {
+            presenter?.offerItemItemClicked(
+                it
+            )
+        } }, null)
     }
 
     override fun onResume() {
@@ -65,7 +69,7 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
         prog_bar_offers_list_activity.visibility = View.GONE
     }
 
-    override fun publishDataList(data: List<Offer>) {
+    override fun showOffers(data: List<OfferHeader>) {
         (rv_offers_list_activity.adapter as OffersListAdapter).updateData(data)
     }
 

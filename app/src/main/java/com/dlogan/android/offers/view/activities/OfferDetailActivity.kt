@@ -52,10 +52,10 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
     override fun onResume() {
         super.onResume()
 
-        offer = intent?.getParcelableExtra(OFFER_KEY)
-        LogUtil.d(TAG, String.format("Got offer: %s", offer?.id))
+        val offerId = intent?.getStringExtra(OFFER_KEY)
+        LogUtil.d(TAG, String.format("Got offer: %s",offerId))
 
-        presenter?.onViewCreated(offer)
+        presenter?.onViewCreated(offerId)
         cicerone.navigatorHolder.setNavigator(navigator)
 
         supportActionBar?.let {
@@ -75,6 +75,7 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
     }
 
     override fun showOfferData(offer: Offer?) {
+        this.offer = offer
         name.text = offer?.name
         currentValue.text = offer?.currentValue
         description.text = offer?.description
@@ -82,6 +83,7 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
         favorite.isChecked = offer?.isFavorite ?: false
         Glide.with(this)
             .load(offer?.url)
+            .error(R.drawable.baseline_insert_photo_black_48)
             .into(this.imageView)
     }
 

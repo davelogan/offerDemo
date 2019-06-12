@@ -65,10 +65,6 @@ dependencies {
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation 'javax.inject:javax.inject:1'
 
-    //Cicerone - https://github.com/terrakok/Cicerone
-    //For Router and Navigation
-    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
-
     // testing
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

@@ -9,7 +9,8 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import com.dlogan.android.offers.R
 import com.dlogan.android.offers.entity.OfferHeader
-import com.dlogan.android.offers.entity.IOffersRepo
+import com.dlogan.android.offers.entity.OffersRepo
+
 import com.dlogan.android.offers.view.adapters.OfferListItemViewHolder
 import io.reactivex.Flowable
 import org.junit.Before
@@ -31,7 +32,7 @@ class OffersListActivityInstrumentedTest {
     var rule = MockitoJUnit.rule()
 
     @Mock
-    var offersRepo = Mockito.mock(IOffersRepo::class.java)
+    var offersRepo = Mockito.mock(OffersRepo::class.java)
 
     @Before
     fun setUp() {

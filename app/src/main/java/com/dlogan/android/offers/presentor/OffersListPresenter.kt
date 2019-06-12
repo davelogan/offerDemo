@@ -1,21 +1,19 @@
 package com.dlogan.android.offers.presentor
 
 import com.dlogan.android.offers.OffersListContract
+import com.dlogan.android.offers.Router
 import com.dlogan.android.offers.entity.OfferHeader
 import com.dlogan.android.offers.interactor.OfferListInteractor
-import com.dlogan.android.offers.view.screens.OffersDetailScreen
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Router
 
 
-class OffersListPresenter(private var view: OffersListContract.View?, var cicerone: Cicerone<Router>) :
+class OffersListPresenter(private var view: OffersListContract.View?, private var router: Router) :
     OffersListContract.Presenter,
     OffersListContract.InteractorOutput {
 
     private var interactor: OffersListContract.Interactor? = OfferListInteractor(this)
 
     override fun offerItemItemClicked(offerId: String) {
-        cicerone.router.navigateTo(OffersDetailScreen(offerId))
+        router.showOfferDetails(view?.getContext(), offerId)
     }
 
     override fun onViewCreated() {

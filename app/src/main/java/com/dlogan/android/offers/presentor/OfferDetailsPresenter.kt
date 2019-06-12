@@ -1,13 +1,13 @@
 package com.dlogan.android.offers.presentor
 
+import android.app.Activity
 import com.dlogan.android.offers.OfferDetailsContract
+import com.dlogan.android.offers.Router
 import com.dlogan.android.offers.entity.Offer
 import com.dlogan.android.offers.interactor.OfferDetailsInteractor
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Router
 
 
-class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var cicerone: Cicerone<Router>) :
+class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var router: Router) :
     OfferDetailsContract.Presenter, OfferDetailsContract.InteractorOutput {
 
     private var interactor: OfferDetailsContract.Interactor? = OfferDetailsInteractor(this)
@@ -17,7 +17,7 @@ class OfferDetailsPresenter(private var view: OfferDetailsContract.View?, var ci
     }
 
     override fun backButtonClicked() {
-        cicerone.router.exit()
+        router.exit(view?.getContext() as Activity)
     }
 
     override fun favoriteCbClicked(offer: Offer?, favorite: Boolean) {

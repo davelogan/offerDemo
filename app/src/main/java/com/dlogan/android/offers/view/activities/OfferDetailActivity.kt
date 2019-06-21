@@ -1,5 +1,7 @@
 package com.dlogan.android.offers.view.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -13,24 +15,18 @@ import com.dlogan.android.offers.utilities.LogUtil
 import com.dlogan.android.offers.utilities.OFFER_KEY
 import kotlinx.android.synthetic.main.activity_offer_detail.*
 import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import javax.inject.Inject
 
 class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
     companion object {
         val TAG: String by lazy { OfferDetailActivity::class.java.simpleName }
-    }
 
-    private val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
-        SupportAppNavigator(this, -1)
+        fun callingIntent(context: Context, offerId: String?): Intent {
+            val intent = Intent(context, OfferDetailActivity::class.java)
+            intent.putExtra(OFFER_KEY, offerId)
+            return intent
+        }
     }
-
-    @Inject
-    lateinit var cicerone: Cicerone<Router>
 
     private var presenter: OfferDetailsContract.Presenter? = null
 
@@ -42,7 +38,7 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
         setContentView(R.layout.activity_offer_detail)
 
         appComponent.inject(this)
-        presenter = OfferDetailsPresenter(this, cicerone)
+        presenter = OfferDetailsPresenter(this, router)
 
         favorite.setOnClickListener {
             presenter?.favoriteCbClicked(offer, favorite.isChecked)
@@ -56,7 +52,6 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
         LogUtil.d(TAG, String.format("Got offer: %s",offerId))
 
         presenter?.onViewCreated(offerId)
-        cicerone.navigatorHolder.setNavigator(navigator)
 
         supportActionBar?.let {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -65,7 +60,6 @@ class OfferDetailActivity : BaseActivity(), OfferDetailsContract.View {
 
     override fun onPause() {
         super.onPause()
-        cicerone.navigatorHolder.removeNavigator()
     }
 
     override fun onDestroy() {

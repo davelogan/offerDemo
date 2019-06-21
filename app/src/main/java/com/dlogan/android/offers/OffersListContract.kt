@@ -1,5 +1,6 @@
 package com.dlogan.android.offers
 
+import android.content.Context
 import com.dlogan.android.offers.entity.OfferHeader
 
 interface OffersListContract {
@@ -8,6 +9,7 @@ interface OffersListContract {
         fun hideLoading()
         fun showOffers(data: List<OfferHeader>)
         fun showInfoMessage(msg: String)
+        fun getContext(): Context
     }
 
     interface Presenter {

@@ -1,5 +1,6 @@
 package com.dlogan.android.offers
 
+import android.content.Context
 import com.dlogan.android.offers.entity.Offer
 
 interface OfferDetailsContract {
@@ -7,6 +8,7 @@ interface OfferDetailsContract {
     interface View {
         fun showInfoMessage(msg: String)
         fun showOfferData(offer: Offer?)
+        fun getContext(): Context
     }
 
     interface Presenter {

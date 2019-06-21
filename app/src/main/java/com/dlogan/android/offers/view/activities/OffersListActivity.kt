@@ -1,5 +1,7 @@
 package com.dlogan.android.offers.view.activities
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,20 +13,19 @@ import com.dlogan.android.offers.presentor.OffersListPresenter
 import com.dlogan.android.offers.view.adapters.OffersListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.Router
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import javax.inject.Inject
 
 class OffersListActivity : BaseActivity(), OffersListContract.View {
 
-    private val navigator: Navigator by lazy(mode = LazyThreadSafetyMode.NONE) {
-        SupportAppNavigator(this, -1)
+
+
+    companion object {
+        val TAG: String by lazy { OffersListActivity::class.java.simpleName }
+
+        fun callingIntent(context: Context): Intent {
+            return Intent(context, OffersListActivity::class.java)
+        }
     }
 
-    @Inject
-    lateinit var cicerone: Cicerone<Router>
 
     private var presenter: OffersListContract.Presenter? = null
 
@@ -34,7 +35,7 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
         setContentView(R.layout.activity_main)
 
         appComponent.inject(this)
-        presenter = OffersListPresenter(this, cicerone)
+        presenter = OffersListPresenter(this, router)
         rv_offers_list_activity.adapter = OffersListAdapter({ offerHeader -> offerHeader?.let {
             presenter?.offerItemItemClicked(
                 it
@@ -45,12 +46,10 @@ class OffersListActivity : BaseActivity(), OffersListContract.View {
     override fun onResume() {
         super.onResume()
         presenter?.onViewCreated()
-        cicerone.navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
         super.onPause()
-        cicerone.navigatorHolder.removeNavigator()
     }
 
     override fun onDestroy() {
